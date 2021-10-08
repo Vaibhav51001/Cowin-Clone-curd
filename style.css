@@ -16,8 +16,6 @@ h1{
 }
 @media (min-width: 720px) {
     .Sec3{
-        margin-top: 2rem;
-        background-color: #1e3770;
         padding: 2rem 15rem;
     } 
 }
