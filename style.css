@@ -14,7 +14,7 @@ body {
 h1{
     padding: 1rem;
 }
-@media (min-width: 900px) {
+@media (min-width: 720px) {
     .Sec3{
         margin-top: 2rem;
         background-color: #1e3770;
