@@ -34,7 +34,7 @@ const generateTaskCard=({id, Vtype, member, yBirth, photoID, idno, dose1, dose2}
             <h5 class="display-5" style="display: inline; padding-left: 1rem;">${Vtype}</h5>
         </div>
         <div class="card-body">
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush" style="font-weight=bold">
                 <li class="list-group-item">Name:<h5 class="card-title">${member}</h5></li>
                 <li class="list-group-item">Year of Birth:<p class="card-text"> ${yBirth}</p></li>
                 <li class="list-group-item">Photo-ID:<p class="card-text"><span class="badge bg-primary">${photoID}</span></p></li>
