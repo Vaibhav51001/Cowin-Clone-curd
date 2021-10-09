@@ -19,7 +19,7 @@ h1{
     padding: 1rem;
 }
 @media (min-width: 720px) {
-    .Sec3{
-        padding: 2rem 15rem;
-    } 
+    #Cbtn{
+        display: none;
+    }
 }
