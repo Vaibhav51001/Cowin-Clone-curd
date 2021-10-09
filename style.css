@@ -10,6 +10,9 @@ body {
     font-family: "Poppins", sans-serif;
     background-color: #ebf2ff;
 }
+.sec_modal{
+    padding: 1rem;
+}
   
 h1{
     padding: 1rem;

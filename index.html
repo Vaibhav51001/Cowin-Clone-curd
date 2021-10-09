@@ -15,7 +15,96 @@
     />
     <title>CoWIN Clone CRUD</title>
 </head>
-<body>
+<body onload="reloadTaskCard()">
+  <!-- Modal Begin -->
+  <div class="modal fade" id="newcardmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Members</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="Vtype" class="form-label">Vaccine Details</label>
+            <select id="Vtype" class="form-select" aria-label="Select Vaccine Type">
+               <option selected value="Vaccine name">Vaccine Name</option>
+               <option value="Covishield">Covishield</option>
+               <option value="Covaxin">Covaxin</option>
+               <option value="Sputnik-V">Sputnik-V</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="member" class="form-label">Name</label>
+            <input type="text" class="form-control" id="member" placeholder="Input Your Name" />
+          </div> 
+          <div class="mb-3">
+            <label for="yBirth" class="form-label">Year of birth</label>
+            <input type="text" class="form-control" id="yBirth" placeholder="Input in Year" />
+          </div>
+          <div class="mb-3">
+            <label for="photoID" class="form-label">Photo ID</label>
+            <select id="photoID" class="form-select" aria-label="Select ID">
+              <option selected value="ID-Proof">Select ID proof</option>
+              <option value="PAN">PAN</option>
+              <option value="Driving Licence">Driving Licence</option>
+              <option value="Aadhaar ID">Aadhaar ID</option>
+           </select>
+          </div>
+          <div class="mb-3">
+            <label for="idno" class="form-label">ID Number</label>
+            <input type="text" class="form-control" id="idno" placeholder="ID Number" />
+          </div>
+          <div class="mb-3">
+            <label for="dose1" class="form-label">Dose 1 Date</label>
+            <input type="date" class="form-control" id="dose1" placeholder="Dose Date" />
+          </div>
+          <div class="mb-3">
+            <label for="dose2" class="form-label">Dose 2 Date</label>
+            <input type="date" class="form-control" id="dose2" placeholder="Dose Date" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button onclick="addCard()" type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Save Member</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Open Details Modal -->
+  <div
+    class="modal fade"
+    id="displayTask"
+    tabindex="-1"
+    aria-labelledby="showTaskLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body" id="task__modal"></div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Header Navbar -->
     <nav style="position: sticky; opacity: 1; width: 100%; z-index: 99;" >
       <div class="navbar navbar-dark" style="background-color: #1e3770; ">
@@ -92,7 +181,7 @@
                       <li><a class="dropdown-item" href="#">Contact Us</a></li>
                     </ul>
                   </div>
-                  <a href="./assets/index.html"  class="text-decoration-none"><button type="button" class="btn btn-light" style="border: 2px solid #1e3770; border-radius: 50px;">Add Members</button></a>
+                  <button type="button" class="btn btn-light ml-auto" data-bs-toggle="modal" data-bs-target="#newcardmodal" style="border: 2px solid #1e3770; border-radius: 50px;">Add Members</button>
                 </div>
               </div>
             </div>
@@ -101,39 +190,6 @@
     </nav>
     <!-- Header Ends -->
     <main>
-      <!-- <section class="section1">
-        <div class="container-fluid px-0 top_banner">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-5 col-md-6">
-                <h1>"India is set to defeat Covid 19.Every Indian is making it possible."</h1>
-                <p>-PM Narendra Modi</p>
-                <div class="mt-4">
-                  <button class="btn btn-light" style="border: 2px solid #1e3770;border-radius: 50px;">Book Your Slot</button>
-                  <button class="btn btn-light ms-lg-4 mt-lg-0 mt-4" style="border: 2px solid #1e3770;border-radius: 50px;">Verify Certificate</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> -->
-      <!-- <section style="border-bottom: 2px solid #1e3770;">
-        <div class="container" >
-          <div class="row" style="margin-bottom: 2rem;">
-            <div class="col " style="text-align: center; width: 100%; margin-top: 5rem;">
-              <h1>"India is set to defeat Covid19.Every Indian is making it possible."</h1>
-              <p>-PM Narendra Modi</p>
-              <div class="mt-4">
-                <button class="btn btn-light" style="border: 2px solid #1e3770;border-radius: 50px;">Book Your Slot</button>
-                <button class="btn btn-light ms-lg-4 mt-lg-0 mt-4" style="border: 2px solid #1e3770;border-radius: 50px;">Verify Certificate</button>
-              </div>
-            </div>
-            <div class="col">
-              <img src="./assets/modi-home-banner.png" alt="modi ji" class="img_edit">
-            </div>
-          </div>
-        </div>
-      </section> -->
       <section>
         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
@@ -178,6 +234,10 @@
         </section>
       </section>
 
+      <section class="container">
+        <div class="row sec_modal" id="taskContents">
+        </div>
+      </section>
 
       <section style="background-color: #1e3770; margin-top: 2rem;">
         <div class="Sec3">
@@ -309,12 +369,6 @@
       </div>
     </div>
     <!-- Footer ends -->
-    
-
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script> 
     <script src="./index.js"></script>  
   </body>
